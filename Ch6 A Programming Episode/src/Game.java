@@ -6,7 +6,7 @@ public class Game {
     private boolean firstThrow;
     public Game(){
         this.itsScore=0;
-        itsThrowns=new int[1000];
+        itsThrowns=new int[21];
         itsCurrentThrow=0;
         itsCurrentFrame=1;
         firstThrow=true;
@@ -18,25 +18,35 @@ public class Game {
     public void add(int pins){
         itsThrowns[itsCurrentThrow++]=pins;
         this.itsScore+=pins;
-        adjustCurrentFrame();
+        adjustCurrentFrame(pins);
     }
-    private void adjustCurrentFrame(){
-        if(firstThrow==true)
-            firstThrow=false;
+    private void adjustCurrentFrame(int pins){
+        if(firstThrow==true) {
+            if(pins==10) //strike so increase the fram and it's gonna be the first
+                //throw so we don't change the firstThrow
+                itsCurrentFrame++;
+            else
+                firstThrow = false;
+        }
         else {//second throw
             firstThrow=true;
             itsCurrentFrame++;
         }
+        itsCurrentFrame= Math.min(11 , itsCurrentFrame); //limit frame to 10
     }
 
     public int scoreForFrame(int frame){
         int score=0, ball=0 , firstThrow , secondThrow , scoreFrame=0;
         for(int currentFrame=0; currentFrame<frame; currentFrame++) {
             firstThrow=itsThrowns[ball++];
-            secondThrow=itsThrowns[ball++];
-            scoreFrame = firstThrow+secondThrow;
-            score+=scoreFrame;
-            if(scoreFrame==10) score+=itsThrowns[ball];
+            if(firstThrow==10){
+                score+=10 + itsThrowns[ball]+itsThrowns[ball+1];
+            }else {
+                secondThrow = itsThrowns[ball++];
+                scoreFrame = firstThrow + secondThrow;
+                score += scoreFrame;
+                if (scoreFrame == 10) score += itsThrowns[ball];
+            }
         }
         return score;
     }
