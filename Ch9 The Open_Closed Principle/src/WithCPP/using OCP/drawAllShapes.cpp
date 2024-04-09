@@ -33,6 +33,7 @@ int main(void ){
     Shape *s1 =new Circle(); 
     s1->draw();
     // Shape s11= new Circle();  //Error you can't create a Abstract object but you can create them using pointers.
+    //https://www.geeksforgeeks.org/pure-virtual-functions-and-abstract-classes/
     Shape *s2 = new Square; 
     Shape *s3 = new Square; 
     Shape *s4 = new Circle; 
