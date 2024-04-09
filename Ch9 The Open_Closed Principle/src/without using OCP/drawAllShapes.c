@@ -1,9 +1,12 @@
+#include "stdio.h"
+#include "Circle.h"
 #include "Shape.h"
 
 typedef struct Shape *ShapePointer;
 
 int main()
 {
+    printf("hi");
 }
 
 void DrawAllShapes(ShapePointer list[], int n)
