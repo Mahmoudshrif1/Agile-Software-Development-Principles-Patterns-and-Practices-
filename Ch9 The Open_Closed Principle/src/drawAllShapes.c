@@ -13,10 +13,10 @@ void DrawAllShapes(ShapePointer list[], int n)
         struct Shape *s = list[i];
         switch (s->itsType)
         {
-        case Square:
+        case square:
             DrawSquare((struct Square *)s);
             break;
-        case Circle:
+        case circle:
             DrawCircle((struct Circle *)s);
             break;
         }

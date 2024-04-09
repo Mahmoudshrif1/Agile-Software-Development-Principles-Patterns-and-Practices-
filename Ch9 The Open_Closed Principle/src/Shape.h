@@ -1,5 +1,5 @@
 enum ShapeType {
-    Circle , Square
+    circle , square
 };
 
 struct Shape{
